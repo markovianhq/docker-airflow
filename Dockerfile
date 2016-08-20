@@ -65,7 +65,6 @@ RUN set -ex \
         /usr/share/doc-base
 
 COPY script/entrypoint.sh ${AIRFLOW_HOME}/entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
 RUN chown -R airflow: ${AIRFLOW_HOME} \
     && chmod +x ${AIRFLOW_HOME}/entrypoint.sh
