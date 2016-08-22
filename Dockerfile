@@ -6,6 +6,7 @@ ENV TERM linux
 
 # Airflow
 ARG AIRFLOW_VERSION=1.7.1.3
+ARG AIRFLOW_COMMIT=fe037d6
 ENV AIRFLOW_HOME /usr/local/airflow
 
 # Define en_US.
@@ -53,7 +54,11 @@ RUN set -ex \
     && pip install 'google-api-python-client>=1.5.0,<1.6.0' \
     && pip install 'oauth2client>=2.0.2,<2.1.0' \
     && pip install httplib2 \
-    && pip install -e git+http://github.com/markovianhq/incubator-airflow.git#egg=airflow \
+    && git clone http://github.com/markovianhq/incubator-airflow.git
+    && cd incubator-airflow \
+    && git checkout $AIRFLOW_COMMIT \
+    && pip install -e . \
+    && cd ..
     && apt-get remove --purge -yqq $buildDeps libpq-dev \
     && apt-get clean \
     && rm -rf \
