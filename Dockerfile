@@ -19,8 +19,7 @@ ENV LC_ALL  en_US.UTF-8
 
 RUN set -ex \
     && buildDeps=' \
-        python-pip \
-        python-dev \
+        python3-dev \
         libkrb5-dev \
         libsasl2-dev \
         libssl-dev \
@@ -28,10 +27,10 @@ RUN set -ex \
         build-essential \
         libblas-dev \
         liblapack-dev \
+        libpq-dev \
         libxml2-dev \
         libxslt1-dev \
     ' \
-    && echo "deb http://http.debian.net/debian jessie-backports main" >/etc/apt/sources.list.d/backports.list \
     && apt-get update -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
@@ -39,7 +38,6 @@ RUN set -ex \
         curl \
         netcat \
         locales \
-    && apt-get install -yqq -t jessie-backports python-requests libpq-dev \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
@@ -51,6 +49,7 @@ RUN set -ex \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
     && pip install psycopg2 \
+    && pip install requests \
     && pip install 'google-api-python-client>=1.5.0,<1.6.0' \
     && pip install 'oauth2client>=2.0.2,<2.1.0' \
     && pip install httplib2 \
