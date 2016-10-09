@@ -69,13 +69,4 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-COPY script/entrypoint.sh ${AIRFLOW_HOME}/entrypoint.sh
-
-RUN chown -R airflow: ${AIRFLOW_HOME} \
-    && chmod +x ${AIRFLOW_HOME}/entrypoint.sh
-
-EXPOSE 8080 5555 8793
-
-USER airflow
 WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["./entrypoint.sh"]
