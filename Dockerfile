@@ -69,6 +69,4 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-EXPOSE 8080 5555 8793
-
 WORKDIR ${AIRFLOW_HOME}
