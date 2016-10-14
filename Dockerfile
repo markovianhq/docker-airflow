@@ -6,8 +6,8 @@ ENV TERM linux
 
 # Airflow
 ARG AIRFLOW_VERSION=1.7.1.3
-ARG AIRFLOW_REPO_URL=https://github.com/apache/incubator-airflow.git
-ARG AIRFLOW_COMMIT=78ebd47
+ARG AIRFLOW_REPO_URL=https://github.com/markovianhq/incubator-airflow.git
+ARG AIRFLOW_COMMIT=2a38804
 ENV AIRFLOW_HOME /usr/local/airflow
 
 # Define en_US.
